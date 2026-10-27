@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plainfold Leases – Rental agreements for every state</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f6;--surface:#fff;--ink:#14213d;--muted:#55607a;--line:#d5dbe7;--accent:#2b4bff;--accent-ink:#fff;--hl:#f6e05e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--surface:#18203a;--ink:#eef1f8;--muted:#9aa5c0;--line:#2b3556;--accent:#7f95ff;--accent-ink:#0f1524}}
+:root[data-theme="dark"]{--bg:#0f1524;--surface:#18203a;--ink:#eef1f8;--muted:#9aa5c0;--line:#2b3556;--accent:#7f95ff;--accent-ink:#0f1524}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font:800 1.4rem "Bricolage Grotesque",system-ui,sans-serif}
+button,select,input{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cartbtn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:8px 18px;font-weight:500}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start;padding:40px 0 56px}
+.hero h1{font-size:clamp(2.3rem,5.6vw,3.9rem);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);max-width:46ch;font-size:1.1rem;margin:20px 0 0}
+.picker{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(20,33,61,.12)}
+.picker label{font-weight:500;display:block;margin-bottom:6px}
+select,input[type=search]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.picker h2{font-size:1.5rem;margin:18px 0 8px}
+ul.rules{margin:0 0 16px;padding-left:20px;color:var(--muted)}ul.rules li{margin:4px 0}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.price{font:700 1.3rem "Bricolage Grotesque",sans-serif}
+.btn,.add{background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:11px 20px;font-weight:500;text-decoration:none}
+.add{padding:8px 14px;border-radius:8px}.add:disabled{background:var(--line);color:var(--muted);cursor:default}
+.inc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;padding:8px 0 8px}
+.inc h3{font-size:1.05rem;margin-bottom:4px}.inc p{margin:0;color:var(--muted);font-size:.95rem}
+h2.sec{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:700;margin:48px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:1.1rem}
+.card summary{cursor:pointer;color:var(--muted);font-size:.92rem}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:.9rem}
+.card .meta{margin-top:auto}
+.empty{color:var(--muted)}
+details.f{border-top:1px solid var(--line);padding:14px 0}details.f:last-of-type{border-bottom:1px solid var(--line)}
+details.f summary{cursor:pointer;font-weight:500}details.f p{color:var(--muted);margin:8px 0 0}
+footer{padding:48px 0 40px;color:var(--muted);font-size:.9rem;max-width:70ch}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);background:var(--surface);border-left:1px solid var(--line);padding:calc(20px + env(safe-area-inset-top,0px)) 20px 20px;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;z-index:20}
+.drawer.open{transform:none}
+.drawer ul{list-style:none;margin:16px 0;padding:0;flex:1;overflow:auto}
+.drawer li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.drawer li button{background:none;border:0;color:var(--muted);text-decoration:underline;padding:0}
+.tot{display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px}
+.x{align-self:flex-end;background:none;border:0;color:var(--ink);font-size:1.4rem}
+.bundle{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:16px;padding:24px 28px;margin-top:24px}
+.bundle h2{font-size:1.6rem;margin-bottom:4px}.bundle p{margin:0;opacity:.8;max-width:52ch}
+.bundle .buy{display:flex;align-items:center;gap:16px}.bundle .price{font-size:2rem}.bundle s{opacity:.6;font-size:.95rem}
+.bundle .btn{background:var(--hl);color:#14213d}.bundle .btn:disabled{opacity:.6;cursor:default}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.drawer{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">Plainfold Leases</div><button class="cartbtn" id="open" aria-label="Open cart">Cart (<span id="n">0</span>)</button></header>
+
+<div class="hero">
+  <div>
+    <h1>A rental agreement written for your state.</h1>
+    <p>Pick where your rental is. See the deposit cap and return deadline built into the lease, then download a print-ready PDF and an editable Word file.</p>
+  </div>
+  <div class="picker">
+    <label for="pick">Where is the rental?</label>
+    <select id="pick"></select>
+    <h2 id="pname"></h2>
+    <ul class="rules" id="prules"></ul>
+    <div class="meta"><span class="price" id="pprice"></span><button class="btn" id="padd">Add to cart</button></div>
+  </div>
+</div>
+
+<div class="inc">
+  <div><h3>PDF and Word</h3><p>Print it as is, or edit names, dates and terms in Word.</p></div>
+  <div><h3>Quick-start guide</h3><p>Three steps: fill in the details, review, sign.</p></div>
+  <div><h3>Instant download</h3><p>One ZIP file per state, available right after purchase.</p></div>
+  <div><h3>Every lease includes</h3><p>Rent, late fees, utilities, pets, entry, default, lead-paint disclosure and signature lines.</p></div>
+</div>
+
+<section class="bundle" aria-label="Bundle offer">
+  <div><h2>All 50 states + DC bundle</h2><p>Every state rental agreement in one purchase. Ideal if you manage properties in several states.</p></div>
+  <div class="buy"><div><span class="price">$25.00</span><br><s>$612.00 separately</s></div><button class="btn" id="badd">Add bundle to cart</button></div>
+</section>
+
+<h2 class="sec">All states</h2>
+<input type="search" id="q" placeholder="Search for a state" aria-label="Search for a state" style="max-width:360px;margin-bottom:16px">
+<div class="grid" id="grid"></div>
+
+<h2 class="sec">Questions</h2>
+<details class="f"><summary>Is this legal advice?</summary><p>No. These are general-information templates. Laws and local ordinances change often, so confirm current requirements or consult a licensed attorney before use.</p></details>
+<details class="f"><summary>Can I rent in more than one state?</summary><p>Each template is for one state. Add each state you need to your cart, or get the all-states bundle for $25.</p></details>
+<details class="f"><summary>What if my files don’t work?</summary><p>Digital downloads are not refundable, but message us and we will fix any problem with your files.</p></details>
+
+<footer>© 2026 Plainfold Leases. Demo storefront: checkout does not take payment yet.</footer>
+</div>
+
+<aside class="drawer" id="drawer" aria-label="Cart" aria-hidden="true">
+  <button class="x" id="close" aria-label="Close cart">×</button>
+  <h2 style="font-size:1.5rem">Your cart</h2>
+  <ul id="items"></ul>
+  <div class="tot"><span>Total</span><span id="total">$0</span></div>
+  <button class="btn" id="checkout">Check out</button>
+</aside>
+
+<script>
+var D=[{"s":"Alabama","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 60 days","Landlord must give 7 days' notice to cure before terminating for nonpayment."]},{"s":"Alaska","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 14 days if proper notice was given, otherwise 30 days","Cap does not apply if rent exceeds $2,000/month."]},{"s":"Arizona","p":12.0,"d":["Security deposit cap: 1.5 month(s) of rent","Deposit return deadline: 14 business days (excluding weekends and holidays)","Landlord must give 5 days' notice for nonpayment of rent."]},{"s":"Arkansas","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 60 days","Nonpayment: 3 days' written notice to pay or vacate."]},{"s":"California","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 21 days with an itemized statement","Cap is one month's rent for most landlords. Statewide rent caps and just-cause eviction rules (AB 1482) may apply, as may local rent control. Bed bug and other mandatory disclosures are required."]},{"s":"Colorado","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 30 days (up to 60 if the lease states so)","Late fees are limited to the greater of $50 or 5% of rent. Habitability protections cannot be waived."]},{"s":"Connecticut","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 21 days (one month's rent cap if tenant is 62 or older)","Deposit must be held in an escrow account and interest paid."]},{"s":"Delaware","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 20 days","Cap applies to leases of one year or longer. Late fees are limited to 5% of rent."]},{"s":"District of Columbia","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 45 days","Deposit must be held in an interest-bearing account."]},{"s":"Florida","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 15 days if no claim; if claiming deductions, notice within 30 days and tenant has 15 days to object","Landlord must disclose where the deposit is held. Radon disclosure required."]},{"s":"Georgia","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days","Deposit capped at two months' rent for landlords owning more than 10 units. Landlord must give a move-in damage list."]},{"s":"Hawaii","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 14 days","Deposit cap applies to security and cleaning deposits combined."]},{"s":"Idaho","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 21 days (up to 30 if agreed in writing)","No statutory cap on deposits."]},{"s":"Illinois","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days with itemized deductions, or 45 days if no deductions were itemized","Buildings with 5+ units must pay interest on deposits. Chicago and some other cities have additional ordinances."]},{"s":"Indiana","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 45 days","Landlord must give an itemized list of damages."]},{"s":"Iowa","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 30 days","Cap is two months' rent."]},{"s":"Kansas","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 30 days","Cap is one month's rent unfurnished, one and a half months furnished."]},{"s":"Kentucky","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 to 60 days","Landlord must keep deposit in a separate account."]},{"s":"Louisiana","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: One month","No statutory cap on deposits."]},{"s":"Maine","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 30 days (21 days with a written lease)","Cap is two months' rent. Deposit must be held in a separate account."]},{"s":"Maryland","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 45 days","Interest required. Late fees are capped at 5% of rent."]},{"s":"Massachusetts","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 30 days","Deposit must be held in a separate interest-bearing account. Landlord must provide a statement of condition within 10 days."]},{"s":"Michigan","p":12.0,"d":["Security deposit cap: 1.5 month(s) of rent","Deposit return deadline: 30 days","Landlord must give a move-in inventory checklist and a notice of the tenant's right to a deposit return."]},{"s":"Minnesota","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 21 days","Deposits earn interest. Landlord must disclose certain items in writing."]},{"s":"Mississippi","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 45 days","No statutory cap on deposits."]},{"s":"Missouri","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 30 days","Cap is two months' rent."]},{"s":"Montana","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days (10 days if no deductions)","No statutory cap on deposits."]},{"s":"Nebraska","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 14 days","Cap is one month's rent (plus a pet deposit of up to a quarter of one month's rent)."]},{"s":"Nevada","p":12.0,"d":["Security deposit cap: 3 month(s) of rent","Deposit return deadline: 30 days","Cap is three months' rent."]},{"s":"New Hampshire","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 30 days","Cap is one month's rent or $100, whichever is greater."]},{"s":"New Jersey","p":12.0,"d":["Security deposit cap: 1.5 month(s) of rent","Deposit return deadline: 30 days","Deposits must be held in an interest-bearing account and tenant notified of its location."]},{"s":"New Mexico","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 30 days","Cap applies to leases under one year."]},{"s":"New York","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 14 days with an itemized statement","Deposit must be held in trust and not commingled. Late fees are limited to $50 or 5% of rent, whichever is less."]},{"s":"North Carolina","p":12.0,"d":["Security deposit cap: 1.5 month(s) of rent","Deposit return deadline: 30 days (45 if claims are not yet determined)","Cap is one and a half months' rent for month-to-month leases up to two weeks' rent, and two months' rent for longer terms."]},{"s":"North Dakota","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 30 days","Cap is one month's rent."]},{"s":"Ohio","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days","Deposit exceeding $50 or one month's rent must earn interest."]},{"s":"Oklahoma","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 45 days","Deposit must be held in an escrow account."]},{"s":"Oregon","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 31 days","Statewide rent caps may apply. Fees are tightly regulated."]},{"s":"Pennsylvania","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 30 days","Cap is two months' rent in year one and one month's rent afterwards. Deposits over $100 must be held in escrow."]},{"s":"Rhode Island","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 20 days","Cap is one month's rent."]},{"s":"South Carolina","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days","No statutory cap on deposits."]},{"s":"South Dakota","p":12.0,"d":["Security deposit cap: 1 month(s) of rent","Deposit return deadline: 14 days (45 days if the tenant disputes deductions)","Cap is one month's rent."]},{"s":"Tennessee","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days","Landlords must hold the deposit in a separate account."]},{"s":"Texas","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days after surrender, provided the tenant gave a forwarding address","Landlord must provide required notices on security devices, parking and late fees. Late fees require a grace period of at least two full days."]},{"s":"Utah","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days","Landlord must give a written statement of deposit amount and conditions."]},{"s":"Vermont","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 14 days (60 days for seasonal rentals)","No statutory cap on deposits."]},{"s":"Virginia","p":12.0,"d":["Security deposit cap: 2 month(s) of rent","Deposit return deadline: 45 days","Cap is two months' rent. Landlord must provide a tenant rights statement."]},{"s":"Washington","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 21 days","Landlord must provide a written checklist and deposit holding information. Late fees may not be charged unless allowed by lease."]},{"s":"West Virginia","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 60 days (45 days if tenancy ended in the middle of the term)","No statutory cap on deposits."]},{"s":"Wisconsin","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 21 days","No statutory cap on deposits. Certain lease terms are void by statute."]},{"s":"Wyoming","p":12.0,"d":["No statewide cap on security deposits","Deposit return deadline: 30 days (15 days after receiving forwarding address)","No statutory cap on deposits."]}];
+var cart=[],cur=D[0].s,bundle=false,BP=25;
+var $=function(i){return document.getElementById(i)};
+function get(s){return D.filter(function(x){return x.s===s})[0]}
+function m(n){return "$"+n.toFixed(2)}
+function lis(a){return a.map(function(t){return "<li>"+t+"</li>"}).join("")}
+function id(s){return s.replace(/ /g,"_")}
+$("pick").innerHTML=D.map(function(x){return '<option>'+x.s+'</option>'}).join("");
+function picker(){var x=get(cur);$("pick").value=cur;$("pname").textContent=x.s+" rental agreement";$("prules").innerHTML=lis(x.d);$("pprice").textContent=m(x.p);var c=bundle||cart.indexOf(cur)>-1;$("padd").disabled=c;$("padd").textContent=c?(bundle?"In bundle":"In cart"):"Add to cart"}
+function grid(){
+  var q=$("q").value.trim().toLowerCase();
+  var l=D.filter(function(x){return x.s.toLowerCase().indexOf(q)>-1});
+  $("grid").innerHTML=l.length?l.map(function(x){var c=bundle||cart.indexOf(x.s)>-1;
+    return '<article class="card"><h3>'+x.s+'</h3><details><summary>State rules built in</summary><ul>'+lis(x.d)+'</ul></details><div class="meta"><span class="price">'+m(x.p)+'</span><button class="add" data-s="'+x.s+'"'+(c?' disabled':'')+'>'+(c?(bundle?'In bundle':'In cart'):'Add to cart')+'</button></div></article>'}).join(""):'<p class="empty">No state matches your search. Try a different spelling.</p>';
+}
+function render(){
+  $("n").textContent=bundle?1:cart.length;var t=0;
+  $("items").innerHTML=bundle?(t=BP,'<li><span>All 50 states + DC bundle</span><span>'+m(BP)+' <button data-rm="__b">Remove</button></span></li>'):cart.length?cart.map(function(s){var x=get(s);t+=x.p;return '<li><span>'+s+' rental agreement</span><span>'+m(x.p)+' <button data-rm="'+s+'">Remove</button></span></li>'}).join(""):'<li>Your cart is empty. Pick a state to get started.</li>';
+  $("total").textContent=m(t);$("badd").disabled=bundle;$("badd").textContent=bundle?"In cart":"Add bundle to cart";picker();grid();
+}
+function drawer(o){$("drawer").classList.toggle("open",o);$("drawer").setAttribute("aria-hidden",!o)}
+$("pick").onchange=function(){cur=this.value;picker()};
+$("padd").onclick=function(){if(cart.indexOf(cur)<0){cart.push(cur);render()}};
+$("q").oninput=grid;
+$("badd").onclick=function(){bundle=true;cart=[];render()};
+$("grid").onclick=function(e){var s=e.target.getAttribute("data-s");if(s&&cart.indexOf(s)<0){cart.push(s);render()}};
+$("items").onclick=function(e){var s=e.target.getAttribute("data-rm");if(s==="__b"){bundle=false;render();return}if(s){cart=cart.filter(function(x){return x!==s});render()}};
+$("open").onclick=function(){drawer(true)};$("close").onclick=function(){drawer(false)};
+$("checkout").onclick=function(){$("items").innerHTML='<li>'+(cart.length||bundle?'Demo only: connect a payment provider to take orders.':'Add a state before checking out.')+'</li>'};
+document.onkeydown=function(e){if(e.key==="Escape")drawer(false)};
+render();
+</script>
+</body>
+</html>
